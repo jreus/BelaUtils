@@ -92,35 +92,35 @@ std::vector<std::string> split(const std::string& s, char delimiter)
 int main(int argc, char** argv)
 {
 	unsigned int serialBaud = 115200;
-  std::string serialPort = "/dev/ttyS5"; // UART5 on the Bela
-	std::string remote = "localhost:57120"; // OSC remote to send messages to.. should be sclang
+	std::string serialPort = "/dev/ttyS5"; // UART5 on the Bela
+	std::string remote = "localhost:57120"; // sclang
 
-  // PARSE COMMAND LINE ARGUMENTS
-  int c = 1;
+	// PARSE COMMAND LINE ARGUMENTS
+	int c = 1;
 	if(argc == 1) {
 		printf(helpText, argv[0], remote.c_str());
 		return 0;
 	}
-  while(c < argc) {
-    if(std::string("--help") == std::string(argv[c])) {
-      printf(helpText, argv[0], remote.c_str());
-      return 0;
-    }
+	while(c < argc) {
+		if(std::string("--help") == std::string(argv[c])) {
+			printf(helpText, argv[0], remote.c_str());
+			return 0;
+		}
 		if(std::string("--port") == std::string(argv[c])) {
-      ++c;
-      if(c < argc) {
+			++c;
+			if(c < argc) {
 				serialPort = argv[c];
-        if(serialPort == "") {
-          fprintf(stderr, "Invalid serial port: %s\n", argv[c]);
-        }
-      }
-    }
+				if(serialPort == "") {
+					fprintf(stderr, "Invalid serial port: %s\n", argv[c]);
+				}
+			}
+		}
 		if(std::string("--baud") == std::string(argv[c])) {
-      ++c;
-      if(c < argc) {
+			++c;
+			if(c < argc) {
 				serialBaud = atoi(argv[c]);
-      }
-    }
+			}
+		}
 		if(std::string("--remote") == std::string(argv[c])) {
 			++c;
 			if(c < argc) {
@@ -134,8 +134,8 @@ int main(int argc, char** argv)
 			++c;
 			gVerbose = true;
 		}
-    ++c;
-  }
+		++c;
+	}
 
 	std::vector<std::string> spl = split(remote, ':');
 	if(2 != spl.size()) {
