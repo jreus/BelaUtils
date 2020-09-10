@@ -148,7 +148,7 @@ int main(int argc, char** argv)
 	signal(SIGINT, interrupt_handler); // set up user interrupt handler...
 
 	std::cout << "Connecting to serial port " << serialPort << " at " << serialBaud << " baud" << "\n";
-  gSerial.setup(serialPort.c_str(), serialBaud);
+	gSerial.setup(serialPort.c_str(), serialBaud);
 
 	std::cout << "Sending OSC to " << remoteHost << ":" << remotePort << "\n";
 	gSock.connectTo(remoteHost, remotePort);
